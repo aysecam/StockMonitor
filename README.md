@@ -7,6 +7,7 @@ StockMonitor is a modern inventory tracking system that monitors product stock l
 -Detect low-stock items
 -Automatically place orders from the cheapest Fake Store supplier
 -API security: rate limiting, CSRF protection, and XSS sanitization
+-Bonus request is at the end of the README.MD file.
 
 **Clean Architecture Layers**
 -StockMonitor.API: Entry point, controllers, middleware
@@ -91,4 +92,54 @@ Uses custom middleware for XSS filtering
 CSRF protection works seamlessly with Swagger (via manual header injection)
 Follows SOLID principles and extensible architecture
    
+
+**Bonus**
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Roma Rakamı ile Gösterim</title>
+</head>
+<body>
+
+<div id="stockDisplay"></div>
+
+<script>
+  function toRoman(num) {
+    const romanMap = [
+      { value: 1000, symbol: 'M' },
+      { value: 900, symbol: 'CM' },
+      { value: 500, symbol: 'D' },
+      { value: 400, symbol: 'CD' },
+      { value: 100, symbol: 'C' },
+      { value: 90, symbol: 'XC' },
+      { value: 50, symbol: 'L' },
+      { value: 40, symbol: 'XL' },
+      { value: 10, symbol: 'X' },
+      { value: 9, symbol: 'IX' },
+      { value: 5, symbol: 'V' },
+      { value: 4, symbol: 'IV' },
+      { value: 1, symbol: 'I' }
+    ];
+
+    let result = '';
+    for (const { value, symbol } of romanMap) {
+      while (num >= value) {
+        result += symbol;
+        num -= value;
+      }
+    }
+    return result;
+  }
+
+  // Örnek stok miktarı gösterimi
+  const stock = 4;
+  const romanStock = toRoman(stock);
+
+  document.getElementById('stockDisplay').innerText = `Stok: ${romanStock} adet`;
+</script>
+
+</body>
+</html>
 
